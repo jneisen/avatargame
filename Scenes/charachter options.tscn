@@ -11,6 +11,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tsffj")
 
+[node name="warn_user" type="PopupPanel" parent="."]
+initial_position = 3
+size = Vector2i(377, 100)
+current_screen = 0
+visible = true
+
+[node name="Label" type="Label" parent="warn_user"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 373.0
+offset_bottom = 96.0
+size_flags_horizontal = 4
+text = "Must select charachter for Player 1 and Player 2"
+
+[node name="close_popup" type="Button" parent="warn_user"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 373.0
+offset_bottom = 96.0
+text = "close"
+
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 1228.0
@@ -69,7 +90,9 @@ layout_mode = 2
 text = "Start Match
 "
 
+[connection signal="pressed" from="warn_user/close_popup" to="." method="_on_close_popup_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/pick_zuko_1" to="." method="_on_pick_zuko_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/pick_katara_1" to="." method="_on_pick_katara_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer2/pick_zuko_2" to="." method="_on_pick_zuko_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer2/pick_katara_2" to="." method="_on_pick_katara_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]

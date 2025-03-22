@@ -28,9 +28,28 @@ var facingLeft = false
 
 @onready var sprite = $Player
 @onready var animationPlayer = $AnimationPlayer
+var gameController
 
+#-------------------------------------------------
+# External functions that are meant to be called by others
 func setCharacter(string):
 	character = string
+
+func setGameController(someone):
+	gameController = someone
+
+func hit(knockback : Vector2, hitstun : float, damage : float):
+	playerMovement = knockback * (1.0 + health)
+	health += (damage / 100.0)
+	hitstunTimer = hitstun
+
+func die():
+	lives -= 1
+	if(lives <= 0):
+		gameController.lose(player1)
+	health = 0.0
+	
+#------------------------------------------------------------
 
 func _ready():
 	# if you are on zuko, load the correct moves
@@ -61,9 +80,10 @@ func _process(_delta: float) -> void:
 	
 	if(left && !facingLeft):
 		facingLeft = true
-		sprite
+		sprite.flip_h = true
 	if(right && facingLeft):
 		facingLeft = false
+		sprite.flip_h = false
 
 func _physics_process(_delta: float) -> void:
 	grounded = is_on_floor()
@@ -133,9 +153,3 @@ func attackDirection(attackCode):
 func specialDirection(attackCode):
 	if(attackCode == "sideLeft"):
 		return
-
-func hit(knockback : Vector2, hitstun : float, damage : float):
-	playerMovement = knockback * (1.0 + health)
-	health += (damage / 100.0)
-	hitstunTimer = hitstun
-	

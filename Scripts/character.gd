@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var character = "Zuko"
+
 var playerMovement : Vector2
 @export var maxSpeed = 350.0
 @export var groundSpeed = 20.0
@@ -8,6 +10,7 @@ var playerMovement : Vector2
 @export var friction = 15.0
 @export var jumpHeight = 350.0
 @export var fallSpeedDecreaser = 0.6
+@export var player1 = true
 var hitstunTimer = 0
 var health = 0.0
 var lives = 3
@@ -23,21 +26,42 @@ var grounded : bool
 
 var facingLeft = false
 
+@onready var sprite = $Player
+@onready var animationPlayer = $AnimationPlayer
+
+func setCharacter(string):
+	character = string
+
+func _ready():
+	# if you are on zuko, load the correct moves
+	if(character == "Zuko"):
+		return
+	# if you are on katara, load the correct moves
+	else:
+		return
 	
 func _process(_delta: float) -> void:
-	left = Input.is_action_pressed("Left")
-	right = Input.is_action_pressed("Right")
-	up = Input.is_action_pressed("Jump")
-	down = Input.is_action_pressed("Down")
-	
-	attack = Input.is_action_pressed("Attack")
-	special = Input.is_action_pressed("Special")
-	
-	if(Input.is_action_pressed("test")):
-		hit(Vector2(100, -100), 0.2, 1.0)
+	# takes the input for each player
+	if(player1):
+		left = Input.is_action_pressed("Left")
+		right = Input.is_action_pressed("Right")
+		up = Input.is_action_pressed("Jump")
+		down = Input.is_action_pressed("Down")
+		
+		attack = Input.is_action_pressed("Attack")
+		special = Input.is_action_pressed("Special")
+	else:
+		left = Input.is_action_pressed("Left2")
+		right = Input.is_action_pressed("Right2")
+		up = Input.is_action_pressed("Jump2")
+		down = Input.is_action_pressed("Down2")
+		
+		attack = Input.is_action_pressed("Attack2")
+		special = Input.is_action_pressed("Special2")
 	
 	if(left && !facingLeft):
 		facingLeft = true
+		sprite
 	if(right && facingLeft):
 		facingLeft = false
 

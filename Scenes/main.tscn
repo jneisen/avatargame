@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://drqqsro1up4w4"]
 
-[ext_resource type="Script" uid="uid://i808t46yvrp6" path="res://Scenes/main.gd" id="1_jjgbg"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_jjgbg"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -42,4 +42,3 @@ text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
-

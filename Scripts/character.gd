@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var character = "Zuko"
+var character = "zuko"
 
 var playerMovement : Vector2
 @export var maxSpeed = 350.0
@@ -36,8 +36,8 @@ var gameController
 func setCharacter(string):
 	character = string
 
-func setGameController(someone):
-	gameController = someone
+func setGameController(controller):
+	gameController = controller
 
 func hit(knockback : Vector2, hitstun : float, damage : float):
 	playerMovement = knockback * (1.0 + health)
@@ -59,7 +59,7 @@ func finishMove():
 
 func _ready():
 	# if you are on zuko, load the correct moves
-	if(character == "Zuko"):
+	if(character == "zuko"):
 		return
 	# if you are on katara, load the correct moves
 	else:

@@ -1,7 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxqicvt6us5nc"]
 
 [ext_resource type="PackedScene" uid="uid://dwjftpe5w5f7j" path="res://Scenes/character.tscn" id="1_6r33q"]
+<<<<<<< HEAD:Scenes/stage.tscn
 [ext_resource type="Script" path="res://Scripts/stage.gd" id="1_bj7al"]
+=======
+>>>>>>> 03a04be7d95dfd52d9b1cab4ad15af6b0e66fcef:Scenes/test.tscn
 [ext_resource type="Texture2D" uid="uid://duvfrrbkhcwo4" path="res://Sprites/icon.svg" id="2_xutui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olf04"]

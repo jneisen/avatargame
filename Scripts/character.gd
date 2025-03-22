@@ -9,7 +9,7 @@ var playerMovement : Vector2
 @export var jumpHeight = 350.0
 @export var fallSpeedDecreaser = 0.6
 var hitstunTimer = 0
-var health : float
+var health = 0.0
 var lives = 3
 
 var left : bool
@@ -23,8 +23,6 @@ var grounded : bool
 
 var facingLeft = false
 
-
-#func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	left = Input.is_action_pressed("Left")
@@ -35,16 +33,23 @@ func _process(_delta: float) -> void:
 	attack = Input.is_action_pressed("Attack")
 	special = Input.is_action_pressed("Special")
 	
+	if(Input.is_action_pressed("test")):
+		hit(Vector2(100, -100), 0.2, 1.0)
+	
 	if(left && !facingLeft):
 		facingLeft = true
 	if(right && facingLeft):
 		facingLeft = false
 
 func _physics_process(_delta: float) -> void:
+	grounded = is_on_floor()
 	if(hitstunTimer > 0):
+		if(!grounded):
+			playerMovement.y += get_gravity().y * _delta
+		velocity = playerMovement
+		move_and_slide()
 		hitstunTimer -= _delta
 		return
-	grounded = is_on_floor()
 	# moving left and right on the ground
 	if(left && grounded && playerMovement.x > -maxSpeed):
 		playerMovement.x -= groundSpeed
@@ -105,8 +110,8 @@ func specialDirection(attackCode):
 	if(attackCode == "sideLeft"):
 		return
 
-func hitSelf(knockback, hitstun, damage):
-	playerMovement = knockback
-	health += damage
+func hit(knockback : Vector2, hitstun : float, damage : float):
+	playerMovement = knockback * (1.0 + health)
+	health += (damage / 100.0)
 	hitstunTimer = hitstun
 	

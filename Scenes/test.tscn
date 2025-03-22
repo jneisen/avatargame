@@ -14,6 +14,11 @@ scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="CharacterBody2D2" parent="." instance=ExtResource("1_6r33q")]
+position = Vector2(-177, -29)
+scale = Vector2(2, 2)
+player1 = false
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]

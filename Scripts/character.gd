@@ -23,6 +23,7 @@ var attack : bool
 var special : bool
 
 var grounded : bool
+var actionable = true
 
 var facingLeft = false
 
@@ -42,6 +43,9 @@ func hit(knockback : Vector2, hitstun : float, damage : float):
 	playerMovement = knockback * (1.0 + health)
 	health += (damage / 100.0)
 	hitstunTimer = hitstun
+	actionable = true
+	# if there is a scene underneath this one, delete it (aka a current move running)
+	get_node_or_null("currentMove").queue_free()
 
 func die():
 	lives -= 1
@@ -49,6 +53,8 @@ func die():
 		gameController.lose(player1)
 	health = 0.0
 	
+func finishMove():
+	actionable = true
 #------------------------------------------------------------
 
 func _ready():
@@ -87,7 +93,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	grounded = is_on_floor()
-	if(hitstunTimer > 0):
+	if(hitstunTimer > 0 || !actionable):
 		if(!grounded):
 			playerMovement.y += get_gravity().y * _delta
 		velocity = playerMovement
@@ -136,8 +142,10 @@ func _physics_process(_delta: float) -> void:
 		else:
 			attackCode = "neutral"
 		if(attack):
+			actionable = false
 			attackDirection(attackCode)
 		if(special):
+			actionable = false
 			specialDirection(attackCode)
 	
 	# move and slide to complete character movements for this frame

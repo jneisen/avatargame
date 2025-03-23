@@ -44,6 +44,7 @@ func setGameController(someone):
 func hit(knockback : Vector2, hitstun : float, damage : float):
 	playerMovement = knockback * 100 * (1.0 + health)
 	health += (damage / 100.0)
+	gameController.update_player_health(player1, int(health*100)) 
 	hitstunTimer = hitstun
 	actionable = true
 	# if there is a scene underneath this one, delete it (aka a current move running)
@@ -55,6 +56,8 @@ func die():
 	if(lives <= 0):
 		gameController.lose(player1)
 	health = 0.0
+	gameController.update_player_health(player1, int(health*100)) 
+	gameController.update_player_lives(player1, lives)
 	position = Vector2(0, 0)
 	
 func finishMove(lagTime):

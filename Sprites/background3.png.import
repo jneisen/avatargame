@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chmqxg5hf33ir"
-path="res://.godot/imported/halfway_zuko_spritesheet.png-bb64c393122c223af389d35eec8b2187.ctex"
+uid="uid://b07elgupb3lpv"
+path="res://.godot/imported/background3.png-91253554277cf0be8ce0ef4de7ab8853.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://halfway_zuko_spritesheet.png"
-dest_files=["res://.godot/imported/halfway_zuko_spritesheet.png-bb64c393122c223af389d35eec8b2187.ctex"]
+source_file="res://Sprites/background3.png"
+dest_files=["res://.godot/imported/background3.png-91253554277cf0be8ce0ef4de7ab8853.ctex"]
 
 [params]
 

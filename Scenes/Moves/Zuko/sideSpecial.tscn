@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4g6d8q7gfx3a"]
+
+[ext_resource type="Script" uid="uid://ji876yad41jt" path="res://Scripts/projectile.gd" id="1_5qlgq"]
+[ext_resource type="Texture2D" uid="uid://dvi4rq4h355y2" path="res://Sprites/fireball0.png" id="2_mmvsx"]
+[ext_resource type="Texture2D" uid="uid://hstxf6t2gfad" path="res://Sprites/fireball1.png" id="3_elfv6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_esnyy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mmvsx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_elfv6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5qlgq"]
+radius = 9.0
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 65
+collision_mask = 129
+script = ExtResource("1_5qlgq")
+projectileVelocity = Vector2(5, 0)
+knockback = Vector2(3, -3)
+hitstun = 0.2
+damage = 4.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_esnyy")
+frame_progress = 0.483219
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(17, 1)
+shape = SubResource("CircleShape2D_5qlgq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

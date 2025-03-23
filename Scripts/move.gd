@@ -7,6 +7,7 @@ extends Area2D
 @export var timeActive : float
 @export var lagTime : float
 @export var hitboxFix : float
+@export var damageType : String
 
 func _ready() -> void:
 	$CollisionShape2D.disabled = true
@@ -17,7 +18,7 @@ func reverse():
 
 func _on_body_entered(body: Node2D) -> void:
 	if(body != get_parent()):
-		body.hit(knockback, hitstun, damage)
+		body.hit(knockback, hitstun, damage, damageType)
 
 func _process(delta: float) -> void:
 	timeTillActive -= delta

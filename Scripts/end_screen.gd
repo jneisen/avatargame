@@ -1,6 +1,8 @@
 extends Control
 
 func setWinner(player_1_loss) -> void:
+	if $VBoxContainer/Label.text!="":
+		return
 	if player_1_loss:
 		$VBoxContainer/Label.text="Player 2 Wins"
 	else:

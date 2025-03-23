@@ -38,14 +38,14 @@ position = Vector2(5.5, 76)
 shape = SubResource("RectangleShape2D_olf04")
 
 [node name="Player1" parent="." instance=ExtResource("1_6r33q")]
-position = Vector2(4, -41)
+position = Vector2(-293, -34)
 scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.65, 0.65)
 
 [node name="Player2" parent="." instance=ExtResource("1_6r33q")]
-position = Vector2(-177, -29)
+position = Vector2(355, -46)
 scale = Vector2(2, 2)
 player1 = false
 
@@ -81,10 +81,9 @@ shape = SubResource("RectangleShape2D_7nmha")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -870.0
-offset_top = 385.0
-offset_right = -807.0
-offset_bottom = 473.0
+offset_top = 260.0
+offset_right = 154.0
+offset_bottom = 474.0
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -113,10 +112,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 720.0
-offset_top = 318.0
-offset_right = 874.0
-offset_bottom = 473.0
+offset_left = 195.0
+offset_top = 260.0
+offset_right = 349.0
+offset_bottom = 474.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8

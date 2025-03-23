@@ -1,12 +1,14 @@
-[gd_scene load_steps=22 format=3 uid="uid://dwjftpe5w5f7j"]
+[gd_scene load_steps=24 format=3 uid="uid://dwjftpe5w5f7j"]
 
 [ext_resource type="Script" uid="uid://jupp5os8s7ur" path="res://Scripts/character.gd" id="1_ojunq"]
-[ext_resource type="Texture2D" uid="uid://gj8vj68l6px0" path="res://Sprites/updatedspritesheetcombowombozuko.png" id="2_reotu"]
+[ext_resource type="Texture2D" uid="uid://y7hvsk6ap2b6" path="res://Sprites/updatedspritesheetcombowombozuko.png" id="2_reotu"]
 [ext_resource type="Texture2D" uid="uid://cdr2gjyc7odyb" path="res://Sprites/downSpecial0.png" id="3_reotu"]
 [ext_resource type="Texture2D" uid="uid://dp70ikxv0maiv" path="res://Sprites/downSpecial1.png" id="4_a5ess"]
 [ext_resource type="Texture2D" uid="uid://da0aetbgcjqdh" path="res://Sprites/downSpecial2.png" id="5_wbia7"]
 [ext_resource type="Texture2D" uid="uid://b86nth1vf6e7k" path="res://Sprites/downSpecial3.png" id="6_kq7hj"]
 [ext_resource type="Texture2D" uid="uid://bmp8ovh3sswgp" path="res://Sprites/downSpecial4.png" id="7_7iw6i"]
+[ext_resource type="AudioStream" uid="uid://bu51of0j236v3" path="res://Sounds/normalhit.wav" id="8_wbia7"]
+[ext_resource type="AudioStream" uid="uid://b4j6aiyvn8kv" path="res://Sounds/whiphit.mp3" id="9_kq7hj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gm12n"]
 height = 64.0
@@ -52,6 +54,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_reotu"]
 resource_name = "downAttack"
+length = 0.625
 step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -60,7 +63,7 @@ tracks/0/path = NodePath("Player:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5),
+"times": PackedFloat32Array(0, 0.125, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [38, 39, 40]
@@ -392,6 +395,12 @@ sprite_frames = SubResource("SpriteFrames_l1rcp")
 animation = &"downSpecial"
 frame = 4
 frame_progress = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_wbia7")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_kq7hj")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

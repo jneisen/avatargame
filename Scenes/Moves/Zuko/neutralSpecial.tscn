@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqtlcg65mhuuv"]
+[gd_scene load_steps=3 format=3 uid="uid://b1300ea4cnjuy"]
 
 [ext_resource type="Script" uid="uid://b0gitwjn7je6i" path="res://Scripts/move.gd" id="1_k2cwh"]
 
@@ -18,10 +18,10 @@ timeTillActive = 0.9
 timeActive = 0.4
 lagTime = 0.5
 hitboxFix = 35.0
+damageType = "fire"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(43.2918, 6)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ur1on")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

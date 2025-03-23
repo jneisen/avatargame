@@ -41,7 +41,12 @@ func setCharacter(string):
 func setGameController(someone):
 	gameController = someone
 
-func hit(knockback : Vector2, hitstun : float, damage : float):
+func hit(knockback : Vector2, hitstun : float, damage : float, type : String):
+	if(type == "normal"):
+		$AudioStreamPlayer2D.play()
+	elif(type == "fire"):
+		$AudioStreamPlayer2D2.play()
+		
 	playerMovement = knockback * 100 * (1.0 + health)
 	health += (damage / 100.0)
 	gameController.update_player_health(player1, int(health*100)) 

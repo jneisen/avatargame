@@ -155,8 +155,10 @@ func _physics_process(_delta: float) -> void:
 # functions that execute an attack
 func attackDirection(attackCode):
 	# spawn a move corresponding to the attackCode + play animation corresponding
+	var move
 	if(attackCode == "sideLeft"):
-		return
+		move = load("res://Scenes/Moves/Zuko/sideAttack.tscn").instantiate()
+		add_child(move)
 	
 func specialDirection(attackCode):
 	if(attackCode == "sideLeft"):

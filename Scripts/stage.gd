@@ -8,6 +8,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	body.die()
 
 func lose(player_1_loss) -> void:
+	$Area2D.set_deferred("monitoring", false)
 	var level = get_tree().root.get_node("Test")
 	var myRoot = get_tree().root
 	level.call_deferred("free")

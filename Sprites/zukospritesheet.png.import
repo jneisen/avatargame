@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtxaos3ta3pjn"
-path="res://.godot/imported/final zuko spritesheet im crying.png-fe38853a22902b8227bd1f4c08034c85.ctex"
+uid="uid://bp4e8xyy0g2e2"
+path="res://.godot/imported/zukospritesheet.png-8c335122b94e56a923ed325d0a9ff3e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/final zuko spritesheet im crying.png"
-dest_files=["res://.godot/imported/final zuko spritesheet im crying.png-fe38853a22902b8227bd1f4c08034c85.ctex"]
+source_file="res://Sprites/zukospritesheet.png"
+dest_files=["res://.godot/imported/zukospritesheet.png-8c335122b94e56a923ed325d0a9ff3e4.ctex"]
 
 [params]
 

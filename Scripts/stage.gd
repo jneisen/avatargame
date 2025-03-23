@@ -2,9 +2,9 @@ extends Node2D
 
 func setPlayerCharacters(player1, player2):
 	$Player1.setCharacter(player1)
+	$Player1.setGameController(self)
 	$Player2.setCharacter(player2)
-
-
+	$Player2.setGameController(self)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	body.die()

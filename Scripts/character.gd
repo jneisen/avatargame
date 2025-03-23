@@ -64,6 +64,7 @@ func finishMove(lagTime):
 
 func _ready():
 	sprite.position.x = -45.0
+	$AnimatedSprite2D.visible = false
 	# if you are on zuko, load the correct moves
 	if(character == "Zuko"):
 		return
@@ -199,9 +200,46 @@ func attackDirection(attackCode):
 		add_child(move)
 	
 func specialDirection(attackCode):
-	if(attackCode == "sideLeft"):
-		return
+	if(attackCode == "sideLeft" || attackCode == "sideRight"):
+		animationPlayer.play("sideSpecial")
+		allowOthers = false
+		var move = load("res://Scenes/Moves/Zuko/sideSpecial.tscn").instantiate()
+		move.global_position = position + Vector2(0, -12)
+		if(facingLeft):
+			move.reverse()
+		move.name = "currentMove"
+		move.setPerson(self)
+		add_sibling(move)
+	if(attackCode == "up"):
+		animationPlayer.play("upSpecial")
+		allowOthers = false
+		playerMovement.y = -2 * jumpHeight
+		actionable = true
+	if(attackCode == "down"):
+		sprite.visible = false
+		$AnimatedSprite2D.visible = true
+		$AnimatedSprite2D.play("downSpecial")
+		allowOthers = false
+		var move = load("res://Scenes/Moves/Zuko/downSpecial.tscn").instantiate()
+		if(facingLeft):
+			move.reverse()
+		move.name = "currentMove"
+		add_child(move)
+	if(attackCode == "neutral"):
+		animationPlayer.play("neutralSpecial")
+		allowOthers = false
+		var move = load("res://Scenes/Moves/Zuko/neutralSpecial.tscn")
+		move.name = "currentMove"
+		add_child(move)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	allowOthers = true
+	if(anim_name == "sideSpecial"):
+		actionable = true
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	$AnimatedSprite2D.visible = false
+	sprite.visible = true
 	allowOthers = true

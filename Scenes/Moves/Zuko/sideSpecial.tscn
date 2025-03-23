@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4g6d8q7gfx3a"]
+[gd_scene load_steps=6 format=3 uid="uid://c5hom0ur2rgst"]
 
 [ext_resource type="Script" uid="uid://ji876yad41jt" path="res://Scripts/projectile.gd" id="1_5qlgq"]
 [ext_resource type="Texture2D" uid="uid://dvi4rq4h355y2" path="res://Sprites/fireball0.png" id="2_mmvsx"]
@@ -26,7 +26,7 @@ collision_layer = 65
 collision_mask = 129
 script = ExtResource("1_5qlgq")
 projectileVelocity = Vector2(5, 0)
-knockback = Vector2(3, -3)
+knockback = Vector2(1, 0)
 hitstun = 0.2
 damage = 4.0
 

@@ -41,9 +41,15 @@ func setCharacter(string):
 func setGameController(someone):
 	gameController = someone
 
-func hit(knockback : Vector2, hitstun : float, damage : float):
+func hit(knockback : Vector2, hitstun : float, damage : float, type : String):
+	if(type == "normal"):
+		$AudioStreamPlayer2D.play()
+	elif(type == "fire"):
+		$AudioStreamPlayer2D2.play()
+		
 	playerMovement = knockback * 100 * (1.0 + health)
 	health += (damage / 100.0)
+	gameController.update_player_health(player1, int(health*100)) 
 	hitstunTimer = hitstun
 	actionable = true
 	# if there is a scene underneath this one, delete it (aka a current move running)
@@ -55,6 +61,8 @@ func die():
 	if(lives <= 0):
 		gameController.lose(player1)
 	health = 0.0
+	gameController.update_player_health(player1, int(health*100)) 
+	gameController.update_player_lives(player1, lives)
 	position = Vector2(0, 0)
 	
 func finishMove(lagTime):
@@ -228,7 +236,9 @@ func specialDirection(attackCode):
 	if(attackCode == "neutral"):
 		animationPlayer.play("neutralSpecial")
 		allowOthers = false
-		var move = load("res://Scenes/Moves/Zuko/neutralSpecial.tscn")
+		var move = load("res://Scenes/Moves/Zuko/neutralSpecial.tscn").instantiate()
+		if(facingLeft):
+			move.reverse()
 		move.name = "currentMove"
 		add_child(move)
 

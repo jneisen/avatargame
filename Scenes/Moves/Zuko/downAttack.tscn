@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://7mlg6fd27esk"]
+[gd_scene load_steps=3 format=3 uid="uid://ceyrqtc1yep5o"]
 
 [ext_resource type="Script" uid="uid://b0gitwjn7je6i" path="res://Scripts/move.gd" id="1_50145"]
 
@@ -10,13 +10,14 @@ position = Vector2(12, 6)
 collision_layer = 0
 collision_mask = 128
 script = ExtResource("1_50145")
-damage = 8.0
+damage = 4.0
 knockback = Vector2(1, 5)
 hitstun = 0.5
-timeTillActive = 0.25
+timeTillActive = 0.1
 timeActive = 0.4
-lagTime = 0.4
+lagTime = 0.15
 hitboxFix = 29.0
+damageType = "normal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)

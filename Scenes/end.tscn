@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dci3u7nt5vbsm"]
+
+[ext_resource type="Texture2D" uid="uid://dxh8qhyffm2wy" path="res://Sprites/EndingCredit3.png" id="1_xmt8n"]
+[ext_resource type="Script" uid="uid://bstsxybro1mvm" path="res://end.gd" id="2_02kpm"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 323.5)
+scale = Vector2(0.895312, 0.901389)
+texture = ExtResource("1_xmt8n")
+
+[node name="end" type="Button" parent="."]
+layout_mode = 2
+offset_left = 502.0
+offset_top = 457.0
+offset_right = 644.0
+offset_bottom = 507.0
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+script = ExtResource("2_02kpm")
+
+[connection signal="pressed" from="end" to="end" method="_on_pressed"]

@@ -17,6 +17,7 @@ timeTillActive = 0.3
 timeActive = 0.2
 lagTime = 0.3
 hitboxFix = 30.0
+damageType = "normal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(10, 0)

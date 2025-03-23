@@ -1,0 +1,148 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtpuw3hg61n7h"]
+
+[sub_resource type="GDScript" id="GDScript_s3dis"]
+script/source = "extends Control
+
+var player_1_selection = \"\"
+
+var player_2_selection = \"\"
+
+func _ready():
+	$warn_user.visible = false
+
+func _on_pick_zuko_1_pressed() -> void:
+	player_1_selection=\"zuko\"
+	_update_button_states(1)
+
+func _on_pick_katara_1_pressed() -> void:
+	player_1_selection=\"katara\"
+	_update_button_states(1)
+
+func _on_pick_zuko_2_pressed() -> void:
+	player_2_selection=\"zuko\"
+	_update_button_states(2)
+
+func _on_pick_katara_2_pressed() -> void:
+	player_2_selection=\"katara\"
+	_update_button_states(2)
+	
+func _on_start_pressed() -> void:
+	if player_1_selection == \"\" or player_2_selection == \"\":
+		$warn_user.show()
+	else:
+		pass
+
+func _update_button_states(player):   
+	if player==1:
+		if player_1_selection == \"zuko\":
+			$VBoxContainer/HBoxContainer/VBoxContainer/pick_zuko_1.modulate = Color(1, 1, 1)
+			$VBoxContainer/HBoxContainer/VBoxContainer/pick_katara_1.modulate = Color(0.5, 0.5, 0.5)
+		else:
+			$VBoxContainer/HBoxContainer/VBoxContainer/pick_katara_1.modulate = Color(1, 1, 1)
+			$VBoxContainer/HBoxContainer/VBoxContainer/pick_zuko_1.modulate = Color(0.5, 0.5, 0.5)
+	else:
+		if player_2_selection == \"zuko\":
+			$VBoxContainer/HBoxContainer/VBoxContainer/pick_zuko_2.modulate = Color(1, 1, 1)
+			$VBoxContainer/HBoxContainer/VBoxContainer/pick_katara_2.modulate = Color(0.5, 0.5, 0.5)
+		else:
+			$VBoxContainer/HBoxContainer/VBoxContainer2/pick_katara_2.modulate = Color(1, 1, 1)
+			$VBoxContainer/HBoxContainer/VBoxContainer2/pick_zuko_2.modulate = Color(0.5, 0.5, 0.5)
+
+func _on_close_popup_pressed() -> void:
+	$warn_user.hide() # Replace with function body.
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_s3dis")
+
+[node name="warn_user" type="PopupPanel" parent="."]
+initial_position = 3
+size = Vector2i(377, 100)
+current_screen = 0
+visible = true
+
+[node name="Label" type="Label" parent="warn_user"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 373.0
+offset_bottom = 96.0
+size_flags_horizontal = 4
+text = "Must select charachter for Player 1 and Player 2"
+
+[node name="close_popup" type="Button" parent="warn_user"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 373.0
+offset_bottom = 96.0
+text = "close"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1228.0
+offset_bottom = 784.0
+color = Color(0.510641, 0.659147, 0.571366, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Player 1"
+
+[node name="pick_zuko_1" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Zuko"
+
+[node name="pick_katara_1" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Katara"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Player 2"
+
+[node name="pick_zuko_2" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Zuko"
+
+[node name="pick_katara_2" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Katara"
+
+[node name="start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start Match
+"
+
+[connection signal="pressed" from="warn_user/close_popup" to="." method="_on_close_popup_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/pick_zuko_1" to="." method="_on_pick_zuko_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/pick_katara_1" to="." method="_on_pick_katara_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer2/pick_zuko_2" to="." method="_on_pick_zuko_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer2/pick_katara_2" to="." method="_on_pick_katara_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]

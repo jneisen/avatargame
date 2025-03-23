@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxqicvt6us5nc"]
+[gd_scene load_steps=12 format=3 uid="uid://bxqicvt6us5nc"]
 
 [ext_resource type="PackedScene" uid="uid://dwjftpe5w5f7j" path="res://Scenes/character.tscn" id="1_6r33q"]
 [ext_resource type="Script" uid="uid://c6ba2ufl303fm" path="res://Scripts/stage.gd" id="1_70rqm"]
 [ext_resource type="Texture2D" uid="uid://b07elgupb3lpv" path="res://Sprites/background3.png" id="2_7nmha"]
 [ext_resource type="Texture2D" uid="uid://d13v8vpdeq0um" path="res://Sprites/platform.png" id="4_7nmha"]
 [ext_resource type="AudioStream" uid="uid://c3dxcs0yc282e" path="res://Sounds/Background_Fighting_music.mp3" id="4_xgxar"]
+[ext_resource type="Texture2D" uid="uid://km447b33mcik" path="res://Sprites/red-arrow_processed.png" id="5_gdy8p"]
+[ext_resource type="Texture2D" uid="uid://c5ycu4sth2t6u" path="res://Sprites/blue-arrow_processed.png" id="6_gvphh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olf04"]
 size = Vector2(941, 78)
@@ -41,6 +43,11 @@ shape = SubResource("RectangleShape2D_olf04")
 position = Vector2(-293, -34)
 scale = Vector2(2, 2)
 
+[node name="Sprite2D" type="Sprite2D" parent="Player1"]
+position = Vector2(-7, -70)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_gdy8p")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.65, 0.65)
 
@@ -48,6 +55,11 @@ zoom = Vector2(0.65, 0.65)
 position = Vector2(355, -46)
 scale = Vector2(2, 2)
 player1 = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Player2"]
+position = Vector2(-7, -70)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_gvphh")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 visible = false
@@ -90,19 +102,19 @@ size_flags_vertical = 4
 
 [node name="name" type="Label" parent="player_ui_1"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "Player 1"
 
 [node name="lives" type="Label" parent="player_ui_1"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "Lives: 3"
 
 [node name="percent" type="Label" parent="player_ui_1"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 70
 text = "0%"
 
@@ -124,21 +136,21 @@ alignment = 2
 
 [node name="name" type="Label" parent="player_ui_2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 1, 1)
 theme_override_font_sizes/font_size = 40
 text = "Player 2"
 horizontal_alignment = 2
 
 [node name="lives" type="Label" parent="player_ui_2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 1, 1)
 theme_override_font_sizes/font_size = 40
 text = "Lives: 3"
 horizontal_alignment = 2
 
 [node name="percent" type="Label" parent="player_ui_2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 1, 1)
 theme_override_font_sizes/font_size = 70
 text = "0%"
 horizontal_alignment = 2

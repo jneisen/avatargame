@@ -27,7 +27,13 @@ func _on_start_pressed() -> void:
 	if player_1_selection == "" or player_2_selection == "":
 		$warn_user.show()
 	else:
-		pass
+		var level = get_tree().root.get_node("Control")
+		var myRoot = get_tree().root
+		myRoot.remove_child(level)
+		level.call_deferred("free")
+		var switch = load("res://Scenes/stage.tscn").instantiate()
+		switch.setPlayerCharacters(player_1_selection, player_2_selection)
+		myRoot.add_child(switch)
 
 func _update_button_states(player):   
 	if player==1:
@@ -39,8 +45,8 @@ func _update_button_states(player):
 			$VBoxContainer/HBoxContainer/VBoxContainer/pick_zuko_1.modulate = Color(0.5, 0.5, 0.5)
 	else:
 		if player_2_selection == "zuko":
-			$VBoxContainer/HBoxContainer/VBoxContainer/pick_zuko_2.modulate = Color(1, 1, 1)
-			$VBoxContainer/HBoxContainer/VBoxContainer/pick_katara_2.modulate = Color(0.5, 0.5, 0.5)
+			$VBoxContainer/HBoxContainer/VBoxContainer2/pick_zuko_2.modulate = Color(1, 1, 1)
+			$VBoxContainer/HBoxContainer/VBoxContainer2/pick_katara_2.modulate = Color(0.5, 0.5, 0.5)
 		else:
 			$VBoxContainer/HBoxContainer/VBoxContainer2/pick_katara_2.modulate = Color(1, 1, 1)
 			$VBoxContainer/HBoxContainer/VBoxContainer2/pick_zuko_2.modulate = Color(0.5, 0.5, 0.5)

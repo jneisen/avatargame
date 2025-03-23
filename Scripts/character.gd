@@ -193,7 +193,7 @@ func attackDirection(attackCode):
 		animationPlayer.play("downAttack")
 		allowOthers = false
 		move = load("res://Scenes/Moves/Zuko/downAttack.tscn").instantiate()
-		if(left):
+		if(facingLeft):
 			move.reverse()
 		move.name = "currentMove"
 		add_child(move)

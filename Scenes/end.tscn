@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dci3u7nt5vbsm"]
 
-[ext_resource type="Texture2D" uid="uid://ykdxfuhg148i" path="res://Sprites/EndingCredit2.png" id="1_xmt8n"]
+[ext_resource type="Texture2D" uid="uid://dxh8qhyffm2wy" path="res://Sprites/EndingCredit3.png" id="1_xmt8n"]
 [ext_resource type="Script" uid="uid://bstsxybro1mvm" path="res://end.gd" id="2_02kpm"]
 
 [node name="Control" type="Control"]
@@ -19,9 +19,9 @@ texture = ExtResource("1_xmt8n")
 [node name="end" type="Button" parent="."]
 layout_mode = 2
 offset_left = 502.0
-offset_top = 464.0
+offset_top = 457.0
 offset_right = 644.0
-offset_bottom = 514.0
+offset_bottom = 507.0
 theme_override_font_sizes/font_size = 30
 text = "Quit"
 script = ExtResource("2_02kpm")

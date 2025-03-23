@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dwjftpe5w5f7j" path="res://Scenes/character.tscn" id="1_6r33q"]
 [ext_resource type="Script" uid="uid://c6ba2ufl303fm" path="res://Scripts/stage.gd" id="1_70rqm"]
 [ext_resource type="Texture2D" uid="uid://b07elgupb3lpv" path="res://Sprites/background3.png" id="2_7nmha"]
-[ext_resource type="Texture2D" uid="uid://duvfrrbkhcwo4" path="res://Sprites/icon.svg" id="2_xutui"]
+[ext_resource type="Texture2D" uid="uid://d13v8vpdeq0um" path="res://Sprites/platform.png" id="4_7nmha"]
 [ext_resource type="AudioStream" uid="uid://c3dxcs0yc282e" path="res://Sounds/Background_Fighting_music.mp3" id="4_xgxar"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olf04"]
@@ -26,6 +26,17 @@ position = Vector2(-4.49998, -2)
 scale = Vector2(2.79219, 2.53)
 texture = ExtResource("2_7nmha")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(3, 21)
+scale = Vector2(3.3754, 1.40264)
+texture = ExtResource("4_7nmha")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(5.5, 76)
+shape = SubResource("RectangleShape2D_olf04")
+
 [node name="Player1" parent="." instance=ExtResource("1_6r33q")]
 position = Vector2(4, -41)
 scale = Vector2(2, 2)
@@ -37,17 +48,6 @@ zoom = Vector2(0.65, 0.65)
 position = Vector2(-177, -29)
 scale = Vector2(2, 2)
 player1 = false
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(2, 78)
-scale = Vector2(7.4, 0.626561)
-texture = ExtResource("2_xutui")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(5.5, 76)
-shape = SubResource("RectangleShape2D_olf04")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 visible = false

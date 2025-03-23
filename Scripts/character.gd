@@ -228,7 +228,9 @@ func specialDirection(attackCode):
 	if(attackCode == "neutral"):
 		animationPlayer.play("neutralSpecial")
 		allowOthers = false
-		var move = load("res://Scenes/Moves/Zuko/neutralSpecial.tscn")
+		var move = load("res://Scenes/Moves/Zuko/neutralSpecial.tscn").instantiate()
+		if(facingLeft):
+			move.reverse()
 		move.name = "currentMove"
 		add_child(move)
 

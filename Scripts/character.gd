@@ -12,6 +12,7 @@ var playerMovement : Vector2
 @export var fallSpeedDecreaser = 0.6
 @export var player1 = true
 var hitstunTimer = 0
+var noMoveTime = 0
 var health = 0.0
 var lives = 3
 
@@ -40,21 +41,24 @@ func setGameController(someone):
 	gameController = someone
 
 func hit(knockback : Vector2, hitstun : float, damage : float):
-	playerMovement = knockback * (1.0 + health)
+	playerMovement = knockback * 100 * (1.0 + health)
 	health += (damage / 100.0)
 	hitstunTimer = hitstun
 	actionable = true
 	# if there is a scene underneath this one, delete it (aka a current move running)
-	get_node_or_null("currentMove").queue_free()
+	if(get_node_or_null("currentMove") != null):
+		get_node("currentMove").queue_free()
 
 func die():
 	lives -= 1
 	if(lives <= 0):
 		gameController.lose(player1)
 	health = 0.0
+	position = Vector2(0, 0)
 	
-func finishMove():
+func finishMove(lagTime):
 	actionable = true
+	noMoveTime = lagTime
 #------------------------------------------------------------
 
 func _ready():
@@ -93,6 +97,8 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	grounded = is_on_floor()
+	if(noMoveTime > 0):
+		noMoveTime -= _delta
 	if(hitstunTimer > 0 || !actionable):
 		if(!grounded):
 			playerMovement.y += get_gravity().y * _delta
@@ -127,7 +133,7 @@ func _physics_process(_delta: float) -> void:
 		playerMovement.y += get_gravity().y * _delta
 	
 	# start a move
-	if(attack || special):
+	if((attack || special) && noMoveTime <= 0):
 		var attackCode : String
 		if(left):
 			attackCode = "sideLeft"
@@ -141,7 +147,7 @@ func _physics_process(_delta: float) -> void:
 			attackCode = "downAir";
 		else:
 			attackCode = "neutral"
-		if(attack):
+		if(attack && attackCode != "neutral"):
 			actionable = false
 			attackDirection(attackCode)
 		if(special):
@@ -156,9 +162,14 @@ func _physics_process(_delta: float) -> void:
 func attackDirection(attackCode):
 	# spawn a move corresponding to the attackCode + play animation corresponding
 	var move
-	if(attackCode == "sideLeft"):
+	if(attackCode == "sideLeft" || attackCode == "sideRight"):
 		move = load("res://Scenes/Moves/Zuko/sideAttack.tscn").instantiate()
+		move.name = "currentMove"
+		if(attackCode == "sideLeft"):
+			move.reverse()
 		add_child(move)
+	if(attackCode == "up"):
+		return
 	
 func specialDirection(attackCode):
 	if(attackCode == "sideLeft"):

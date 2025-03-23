@@ -16,7 +16,6 @@ func reverse():
 	position.x = -1 * position.x - hitboxFix
 
 func _on_body_entered(body: Node2D) -> void:
-	print(body.get_parent().name)
 	if(body != get_parent()):
 		body.hit(knockback, hitstun, damage)
 

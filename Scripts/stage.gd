@@ -5,6 +5,11 @@ func _ready():
 	$Player2.setGameController(self)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
+	if(body.lives == 1):
+		if(body.name == "Player1"):
+			$Player2.lives += 1
+		else:
+			$Player1.lives += 1
 	body.die()
 
 func lose(player_1_loss) -> void:
@@ -14,6 +19,7 @@ func lose(player_1_loss) -> void:
 	level.call_deferred("free")
 	var switch = load("res://Scenes/end_screen.tscn").instantiate()
 	switch.setWinner(player_1_loss)
+	print("HI")
 	myRoot.add_child.call_deferred(switch)
 
 func update_player_health(isPlayer1, new_health) -> void:

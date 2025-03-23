@@ -62,6 +62,7 @@ func die():
 	lives -= 1
 	if(lives <= 0):
 		gameController.lose(player1)
+		print(player1)
 	health = 0.0
 	gameController.update_player_health(player1, int(health*100)) 
 	gameController.update_player_lives(player1, lives)

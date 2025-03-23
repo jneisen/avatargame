@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func reverse():
 	knockback.x = -knockback.x
-	position.x *= -1
+	position.x = -position.x - 20
 
 func _on_body_entered(body: Node2D) -> void:
 	if(body != get_parent()):

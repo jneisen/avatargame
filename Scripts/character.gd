@@ -156,10 +156,8 @@ func _physics_process(_delta: float) -> void:
 			attackCode = "up"
 		elif(right):
 			attackCode = "sideRight"
-		elif(down && grounded):
-			attackCode = "downGround"
-		elif(down && !grounded):
-			attackCode = "downAir";
+		elif(down):
+			attackCode = "down"
 		else:
 			attackCode = "neutral"
 		if(attack && attackCode != "neutral"):
@@ -189,6 +187,14 @@ func attackDirection(attackCode):
 		animationPlayer.play("upAttack")
 		allowOthers = false
 		move = load("res://Scenes/Moves/Zuko/upAttack.tscn").instantiate()
+		move.name = "currentMove"
+		add_child(move)
+	if(attackCode == "down"):
+		animationPlayer.play("downAttack")
+		allowOthers = false
+		move = load("res://Scenes/Moves/Zuko/downAttack.tscn").instantiate()
+		if(left):
+			move.reverse()
 		move.name = "currentMove"
 		add_child(move)
 	

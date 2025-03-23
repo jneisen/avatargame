@@ -23,6 +23,8 @@ var down : bool
 var attack : bool
 var special : bool
 
+var up_special_able = true
+
 var grounded : bool
 var actionable = true
 var allowOthers = true
@@ -110,6 +112,10 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	grounded = is_on_floor()
+	
+	if(grounded):
+		up_special_able = true
+	
 	if(noMoveTime > 0):
 		noMoveTime -= _delta
 	if(hitstunTimer > 0 || !actionable):
@@ -173,8 +179,9 @@ func _physics_process(_delta: float) -> void:
 			actionable = false
 			attackDirection(attackCode)
 		if(special):
-			actionable = false
-			specialDirection(attackCode)
+			if(attackCode != "up" || up_special_able):
+				actionable = false
+				specialDirection(attackCode)
 	
 	# move and slide to complete character movements for this frame
 	velocity = playerMovement
@@ -192,13 +199,13 @@ func attackDirection(attackCode):
 		if(attackCode == "sideLeft"):
 			move.reverse()
 		add_child(move)
-	if(attackCode == "up"):
+	elif(attackCode == "up"):
 		animationPlayer.play("upAttack")
 		allowOthers = false
 		move = load("res://Scenes/Moves/Zuko/upAttack.tscn").instantiate()
 		move.name = "currentMove"
 		add_child(move)
-	if(attackCode == "down"):
+	elif(attackCode == "down"):
 		animationPlayer.play("downAttack")
 		allowOthers = false
 		move = load("res://Scenes/Moves/Zuko/downAttack.tscn").instantiate()
@@ -218,12 +225,15 @@ func specialDirection(attackCode):
 		move.name = "currentMove"
 		move.setPerson(self)
 		add_sibling(move)
-	if(attackCode == "up"):
+		noMoveTime = 0.75
+	elif(attackCode == "up"):
+		up_special_able = false
 		animationPlayer.play("upSpecial")
 		allowOthers = false
 		playerMovement.y = -2 * jumpHeight
 		actionable = true
-	if(attackCode == "down"):
+		noMoveTime = 0.5
+	elif(attackCode == "down"):
 		sprite.visible = false
 		$AnimatedSprite2D.visible = true
 		$AnimatedSprite2D.play("downSpecial")
@@ -233,7 +243,7 @@ func specialDirection(attackCode):
 			move.reverse()
 		move.name = "currentMove"
 		add_child(move)
-	if(attackCode == "neutral"):
+	elif(attackCode == "neutral"):
 		animationPlayer.play("neutralSpecial")
 		allowOthers = false
 		var move = load("res://Scenes/Moves/Zuko/neutralSpecial.tscn").instantiate()

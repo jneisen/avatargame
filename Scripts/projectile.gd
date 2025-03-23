@@ -13,7 +13,6 @@ func _physics_process(delta: float) -> void:
 func setPerson(body):
 	personSpawned = body
 func die():
-	personSpawned.finish_move(0.05)
 	queue_free()
 func reverse():
 	projectileVelocity.x = -projectileVelocity.x
@@ -25,5 +24,4 @@ func _on_body_entered(body: Node2D) -> void:
 	if(body != personSpawned):
 		if(body.get_class() != "StaticBody2D"):
 			body.hit(knockback, hitstun, damage, "fire")
-			personSpawned.finishMove(0.05)
 		queue_free()

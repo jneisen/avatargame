@@ -5,7 +5,7 @@ var player_1_selection = ""
 var player_2_selection = ""
 
 func _ready():
-	$warn_user.hide()
+	$warn_user.visible = false
 
 func _on_pick_zuko_1_pressed() -> void:
 	player_1_selection="zuko"
@@ -25,7 +25,7 @@ func _on_pick_katara_2_pressed() -> void:
 	
 func _on_start_pressed() -> void:
 	if player_1_selection == "" or player_2_selection == "":
-		$warn_user.show()
+		$warn_user.visible = true
 	else:
 		var level = get_tree().root.get_node("Control")
 		var myRoot = get_tree().root
